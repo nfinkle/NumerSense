@@ -1,7 +1,7 @@
 import json
-
-filepath = "/path/to/output.jsonl"
-truth_file = "/path/to/truth.masked.txt"
+import sys
+filepath = sys.argv[1]
+truth_file = sys.argv[2]
 
 truth_dict = {}
 with open(truth_file) as f:
