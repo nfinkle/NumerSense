@@ -11,6 +11,11 @@ if __name__ == "__main__":
     model_str = sys.argv[1]
     input_filename = sys.argv[2]
     output_filename = sys.argv[3]
+    use_numerals = None if len(sys.argv) < 5 else sys.argv[4]
+
+    if use_numerals is not None:
+        num_list.extend([str(i) for i in range(11)])
+
     model = None
     if model_str.startswith("reload_"):
         if model_str.startswith("reload_bert"):
