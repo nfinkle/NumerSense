@@ -73,7 +73,7 @@ def main():
     parser.add_argument('--aggfunc', type=str, default='bestprob', choices=['poe', 'moe', 'bestprob'])
     parser.add_argument('--interactive', action='store_true')
     args = parser.parse_args()
-    args.output_path = f'GKP/results/inference_{args.model_type.split("/")[-1]}.{args.input_path.split("/")[-1]}'
+    args.output_path = f'content/GKP/results/inference_{args.model_type.split("/")[-1]}.{args.input_path.split("/")[-1]}'
 
     tokenizer = transformers.T5Tokenizer.from_pretrained(args.model_type)
     model = transformers.T5ForConditionalGeneration.from_pretrained(args.model_type)
@@ -134,14 +134,14 @@ def main():
             pbar.set_postfix({'acc': num / den})
 
     if args.submit:
-        with open(args.output_path, 'w') as f:
+        with open(args.output_path, 'w+') as f:
             for item in ds:
                 json.dump(item['output'], f)
                 f.write('\n')
     else:
-        with open(args.output_path, 'w') as f:
+        with open(args.output_path, 'w+') as f:
             json.dump(ds, f, indent=4)
-#        with open('out.txt', 'w') as f:
+#        with open('out.txt', 'w+') as f:
 #            for item in ds:
 #                f.write('%d\n' % item['ok'])
 
