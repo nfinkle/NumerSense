@@ -1,5 +1,4 @@
 .vscode/
-pred_results/
 runs/
 saved_models/
 apex/
@@ -7,3 +6,4 @@ data/remove_duplicates.py
 *_eval.py
 evaluation/
 .idea
+src/scripting_compare_results.py
