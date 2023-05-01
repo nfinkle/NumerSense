@@ -73,7 +73,7 @@ def main():
     parser.add_argument('--aggfunc', type=str, default='bestprob', choices=['poe', 'moe', 'bestprob'])
     parser.add_argument('--interactive', action='store_true')
     args = parser.parse_args()
-    args.output_path = f'content/GKP/results/inference_{args.model_type.split("/")[-1]}.{args.input_path.split("/")[-1]}'
+    args.output_path = f'/content/GKP/results/inference_{args.model_type.split("/")[-1]}.{args.input_path.split("/")[-1]}'
 
     tokenizer = transformers.T5Tokenizer.from_pretrained(args.model_type)
     model = transformers.T5ForConditionalGeneration.from_pretrained(args.model_type)
