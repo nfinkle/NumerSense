@@ -48,5 +48,5 @@ if __name__ == "__main__":
         output_str = json.dumps(dict(probe=masked_sent, result_list=result_list))
         predictions.append(output_str)
     with open(output_filename, 'w') as f:
-        print("Saving resutls to", f.name)
+        print("Saving results to", f.name)
         f.write("\n".join(predictions) + "\n")
