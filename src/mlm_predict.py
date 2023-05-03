@@ -12,7 +12,11 @@ if __name__ == "__main__":
     input_filename = sys.argv[2]
     output_filename = sys.argv[3]
     use_numerals = None if len(sys.argv) < 5 else sys.argv[4]
+    use_only_numerals = None if len(sys.argv) < 6 else sys.argv[5]
 
+    if use_only_numerals:
+        assert use_numerals is not None
+        num_list = []
     if use_numerals is not None:
         num_list.extend([str(i) for i in range(11)])
 
