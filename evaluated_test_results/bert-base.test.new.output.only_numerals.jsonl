@@ -1,0 +1,18 @@
+Using numerals
+test_results/bert-base.test.new.output.only_numerals.jsonl
+num_probes: 1000
+top1-acc: 0.359
+top2-acc: 0.57
+top3-acc: 0.693
+positive corrections top1: 0.359
+positive corrections top2: 0.57
+positive corrections top3: 0.693
+negative corrections top1: 0.0
+negative corrections top2: 0.0
+negative corrections top3: 0.0
+Number word count top1: 0.0
+Number word count top2: 0.0
+Number word count top3: 0.0
+Numeral count top1: 1.0
+Numeral count top2: 1.0
+Numeral count top3: 1.0

@@ -1,0 +1,18 @@
+Using numerals
+test_results/roberta-large.test.new.output_with_numerals.jsonl
+num_probes: 1000
+top1-acc: 0.5
+top2-acc: 0.708
+top3-acc: 0.822
+positive corrections top1: 0.028
+positive corrections top2: 0.035
+positive corrections top3: 0.029
+negative corrections top1: 0.003
+negative corrections top2: 0.01
+negative corrections top3: 0.005
+Number word count top1: 0.922
+Number word count top2: 0.834
+Number word count top3: 0.749
+Numeral count top1: 0.078
+Numeral count top2: 0.166
+Numeral count top3: 0.251

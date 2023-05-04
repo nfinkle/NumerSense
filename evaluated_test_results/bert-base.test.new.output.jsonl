@@ -1,0 +1,5 @@
+test_results/bert-base.test.new.output.jsonl
+num_probes: 1000
+top1-acc: 0.467
+top2-acc: 0.686
+top3-acc: 0.795

@@ -1,0 +1,18 @@
+Using numerals
+test_results/gpt.test.new.output_with_numerals.jsonl
+num_probes: 1000
+top1-acc: 0.063
+top2-acc: 0.488
+top3-acc: 0.671
+positive corrections top1: 0.0
+positive corrections top2: 0.057
+positive corrections top3: 0.068
+negative corrections top1: 0.0
+negative corrections top2: 0.047
+negative corrections top3: 0.043
+Number word count top1: 1.0
+Number word count top2: 0.9
+Number word count top3: 0.831
+Numeral count top1: 0.0
+Numeral count top2: 0.1
+Numeral count top3: 0.169

@@ -62,20 +62,21 @@ new_dict = get_scores_with_replacements(
 combined = {}
 biggest_abs_diff = 0
 biggest_abs_diff_probe = None
-assert orig_dict.keys() == new_dict.keys()
+assert sorted(orig_dict.keys()) == sorted(new_dict.keys()), list(zip(
+    sorted(new_dict.keys()), sorted(orig_dict.keys())))
 for probe in orig_dict:
   orig_scores = orig_dict[probe]
   new_scores = new_dict[probe]
   combination = []
-  assert sorted(new_scores.keys()) == sorted(orig_scores.keys())
+  assert sorted(new_scores.keys()) == sorted(orig_scores.keys()), list(zip(sorted(new_scores.keys()), sorted(orig_scores.keys())))
   for word in orig_scores:
     diff = new_scores[word] - orig_scores[word]
     if diff != 0.:
       combination.append((word, new_scores[word] - orig_scores[word]))
   if combination:
-    combined[probe] = sorted(combination, key=lambda x: x[1], reverse=True)
+    combined[probe] = sorted(combination, key=lambda x: abs(x[1]), reverse=True)
     if abs(combined[probe][0][1]) > biggest_abs_diff:
-      biggest_abs_diff = combined[probe][0][1]
+      biggest_abs_diff = abs(combined[probe][0][1])
       biggest_abs_diff_probe = probe
 
 output_file_path = args.output_file

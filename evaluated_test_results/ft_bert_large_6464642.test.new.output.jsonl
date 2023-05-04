@@ -1,0 +1,5 @@
+test_results/ft_bert_large_6464642.test.new.output.jsonl
+num_probes: 1000
+top1-acc: 0.574
+top2-acc: 0.742
+top3-acc: 0.843

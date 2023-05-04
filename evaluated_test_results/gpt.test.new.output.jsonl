@@ -1,0 +1,5 @@
+test_results/gpt.test.new.output.jsonl
+num_probes: 1000
+top1-acc: 0.063
+top2-acc: 0.494
+top3-acc: 0.684

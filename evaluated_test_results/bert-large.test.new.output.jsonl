@@ -1,0 +1,5 @@
+test_results/bert-large.test.new.output.jsonl
+num_probes: 1000
+top1-acc: 0.477
+top2-acc: 0.704
+top3-acc: 0.823
