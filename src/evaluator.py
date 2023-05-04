@@ -103,7 +103,6 @@ with open(filepath) as f:
                 
             sorted_results = sorted(list(results.keys()), key=lambda x, a=results: a[x], reverse=True)
         
-        # print(sorted_results)
         if truth == sorted_results[0]:  # hit@1
             correct_cnt += 1
             if non_numerals_sorted_results and truth != non_numerals_sorted_results[0]: # positive correction
