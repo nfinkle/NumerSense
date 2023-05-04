@@ -7,6 +7,8 @@ use_numerals = False if len(sys.argv) < 4 else True
 if use_numerals:
     print("Using numerals")
 
+NUMERALS = [str(i) for i in range(11)]
+
 truth_dict = {}
 with open(truth_file) as f:
     for line in f.read().splitlines():
@@ -19,11 +21,17 @@ correct_top3_cnt = 0
 num_probes = 0
 pos_correction = 0
 neg_correction = 0
-mismatches_top2 = 0
-mismatches_top3 = 0
+pos_correction_top2 = 0
+pos_correction_top3 = 0
 neg_correction_top2 = 0
 neg_correction_top3 = 0
 
+number_word_count_top1 = 0
+number_word_count_top2 = 0
+number_word_count_top3 = 0
+numeral_count_top1 = 0
+numeral_count_top2 = 0
+numeral_count_top3 = 0
 
 def make_replacement_results(results, old_word, new_word):
     if old_word in results:
@@ -49,6 +57,22 @@ with open(filepath) as f:
         make_replacement_results(results, "no", "zero")
         copy_results = copy.copy(results)
         sorted_results = sorted(list(results.keys()), key=lambda x, a=results: a[x], reverse=True)
+
+        if sorted_results[0] in NUMERALS:
+            numeral_count_top1 += 1
+        else:
+            number_word_count_top1 += 1
+        if sorted_results[0] in NUMERALS or sorted_results[1] in NUMERALS:
+            numeral_count_top2 += 1
+        else:
+            number_word_count_top2 += 1
+        if sorted_results[0] in NUMERALS or sorted_results[1] in NUMERALS or sorted_results[2] in NUMERALS:
+            numeral_count_top3 += 1
+        else:
+            number_word_count_top3 += 1
+
+
+
         non_numerals_sorted_results = []
         if use_numerals:
             non_numerals_sorted_results = sorted_results
@@ -101,13 +125,13 @@ with open(filepath) as f:
         if truth in sorted_results[:2]:  # hit@2
             correct_top2_cnt += 1
             if non_numerals_sorted_results and truth not in non_numerals_sorted_results[:2]:
-                mismatches_top2 += 1
+                pos_correction_top2 += 1
         elif non_numerals_sorted_results and truth in non_numerals_sorted_results[:2]: # negative correction
             neg_correction_top2 += 1
         if truth in sorted_results[:3]:  # hit@3
             correct_top3_cnt += 1
             if non_numerals_sorted_results and truth not in non_numerals_sorted_results[:3]:
-                mismatches_top3 += 1
+                pos_correction_top3 += 1
         elif non_numerals_sorted_results and truth in non_numerals_sorted_results[:3]: # negative correction
             neg_correction_top3 += 1
 
@@ -118,9 +142,15 @@ print("top2-acc:", correct_top2_cnt/num_probes)
 print("top3-acc:", correct_top3_cnt/num_probes)
 if use_numerals:
     print("positive corrections top1:", pos_correction/num_probes)
-    print("positive corrections top2:", mismatches_top2/num_probes)
-    print("positive corrections top3:", mismatches_top3/num_probes)
+    print("positive corrections top2:", pos_correction_top2/num_probes)
+    print("positive corrections top3:", pos_correction_top3/num_probes)
     print("negative corrections top1:", neg_correction/num_probes)
     print("negative corrections top2:", neg_correction_top2/num_probes)
     print("negative corrections top3:", neg_correction_top3/num_probes)
+    print("Number word count top1:", number_word_count_top1/num_probes)
+    print("Number word count top2:", number_word_count_top2/num_probes)
+    print("Number word count top3:", number_word_count_top3/num_probes)
+    print("Numeral count top1:", numeral_count_top1/num_probes)
+    print("Numeral count top2:", numeral_count_top2/num_probes)
+    print("Numeral count top3:", numeral_count_top3/num_probes)
 # print(truth_dict)
