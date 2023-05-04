@@ -1,0 +1,5 @@
+test_results/ft_roberta_large_45en5.test.new.output.jsonl
+num_probes: 1000
+top1-acc: 0.572
+top2-acc: 0.732
+top3-acc: 0.83
