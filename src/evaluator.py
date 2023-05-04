@@ -17,9 +17,21 @@ correct_cnt = 0
 correct_top2_cnt = 0
 correct_top3_cnt = 0
 num_probes = 0
-mismatches = 0
+pos_correction = 0
+neg_correction = 0
 mismatches_top2 = 0
 mismatches_top3 = 0
+neg_correction_top2 = 0
+neg_correction_top3 = 0
+
+
+def make_replacement_results(results, old_word, new_word):
+    if old_word in results:
+        results[new_word] = results[old_word] + \
+            results.get(new_word, 0.0)
+        del results[old_word]
+
+import copy
 with open(filepath) as f:
     for line in f.read().splitlines():
         if not line:
@@ -33,51 +45,71 @@ with open(filepath) as f:
         # deal with the ambiguitiy of no/zero
         if truth == "no":
             truth = "zero"  # always use zero
-        result_list = ["zero" if item["word"] == "no" else item["word"]
-                       for item in data["result_list"]]
-        non_numerals_result_list = []
+        results = {item["word"]: item["score"] for item in data["result_list"]}
+        make_replacement_results(results, "no", "zero")
+        copy_results = copy.copy(results)
+        sorted_results = sorted(list(results.keys()), key=lambda x, a=results: a[x], reverse=True)
+        non_numerals_sorted_results = []
         if use_numerals:
-            non_numerals_result_list = result_list
-            result_list = [""] * len(data["result_list"])
+            non_numerals_sorted_results = sorted_results
             for i, item in enumerate(data["result_list"]):
                 d = item["word"]
                 if d == "no" or d == "0":
-                    d = "zero"
+                    make_replacement_results(results, "0", "zero")
                 elif d == "1":
-                    d = "one"
+                    make_replacement_results(results, "1", "one")
                 elif d == "2":
-                    d = "two"
+                    make_replacement_results(results, "2", "two")
                 elif d == "3":
-                    d = "three"
+                    make_replacement_results(results, "3", "three")
                 elif d == "4":
-                    d = "four"
+                    make_replacement_results(results, "4", "four")
                 elif d == "5":
-                    d = "five"
+                    make_replacement_results(results, "5", "five")
                 elif d == "6":
-                    d = "six"
+                    make_replacement_results(results, "6", "six")
                 elif d == "7":
-                    d = "seven"
+                    make_replacement_results(results, "7", "seven")
                 elif d == "8":
-                    d = "eight"
+                    make_replacement_results(results, "8", "eight")
                 elif d == "9":
-                    d = "nine"
+                    make_replacement_results(results, "9", "nine")
                 elif d == "10":
-                    d = "ten"
-
-                result_list[i] = d
-
-        if truth == result_list[0]:
-            if non_numerals_result_list and truth != non_numerals_result_list[0]:
-                mismatches += 1
+                    make_replacement_results(results, "10", "ten")
+                
+            sorted_results = sorted(list(results.keys()), key=lambda x, a=results: a[x], reverse=True)
+        
+        # print(sorted_results)
+        if truth == sorted_results[0]:  # hit@1
             correct_cnt += 1
-        if truth in result_list[:2]:
-            if non_numerals_result_list and truth not in non_numerals_result_list[:2]:
-                mismatches_top2 += 1
+            if non_numerals_sorted_results and truth != non_numerals_sorted_results[0]: # positive correction
+                # print("\nPOSITIVE CORRECTION")
+                # print(data["probe"], truth)
+                # print(copy_results)
+                # print(non_numerals_sorted_results)
+                # print(results)
+                # print(sorted_results)
+                pos_correction += 1
+        elif non_numerals_sorted_results and truth == non_numerals_sorted_results[0]: # negative correction
+            # print("\nNEGATIVE CORRECTION")
+            # print(data["probe"], truth)
+            # print(copy_results)
+            # print(non_numerals_sorted_results)
+            # print(results)
+            # print(sorted_results)
+            neg_correction += 1
+        if truth in sorted_results[:2]:  # hit@2
             correct_top2_cnt += 1
-        if truth in result_list[:3]:
-            if non_numerals_result_list and truth not in non_numerals_result_list[:3]:
-                mismatches_top3 += 1
+            if non_numerals_sorted_results and truth not in non_numerals_sorted_results[:2]:
+                mismatches_top2 += 1
+        elif non_numerals_sorted_results and truth in non_numerals_sorted_results[:2]: # negative correction
+            neg_correction_top2 += 1
+        if truth in sorted_results[:3]:  # hit@3
             correct_top3_cnt += 1
+            if non_numerals_sorted_results and truth not in non_numerals_sorted_results[:3]:
+                mismatches_top3 += 1
+        elif non_numerals_sorted_results and truth in non_numerals_sorted_results[:3]: # negative correction
+            neg_correction_top3 += 1
 
 print(filepath)
 print("num_probes:", num_probes)
@@ -85,7 +117,10 @@ print("top1-acc:", correct_cnt/num_probes)
 print("top2-acc:", correct_top2_cnt/num_probes)
 print("top3-acc:", correct_top3_cnt/num_probes)
 if use_numerals:
-    print("mismatches top1:", mismatches/num_probes)
-    print("mismatches top2:", mismatches_top2/num_probes)
-    print("mismatches top3:", mismatches_top3/num_probes)
+    print("positive corrections top1:", pos_correction/num_probes)
+    print("positive corrections top2:", mismatches_top2/num_probes)
+    print("positive corrections top3:", mismatches_top3/num_probes)
+    print("negative corrections top1:", neg_correction/num_probes)
+    print("negative corrections top2:", neg_correction_top2/num_probes)
+    print("negative corrections top3:", neg_correction_top3/num_probes)
 # print(truth_dict)
