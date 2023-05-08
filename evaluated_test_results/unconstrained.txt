@@ -1,20 +1,20 @@
 ----- Evaluating Experiments Unconstrained -----
 BERT-base
-Percentage of numerals [0.016, 0.06, 0.054]
-Percentage of number words [0.686, 0.627, 0.62]
-Percentage of other [0.298, 0.313, 0.326]
+Percentage of numerals [0.016, 0.069, 0.115]
+Percentage of number words [0.686, 0.753, 0.763]
+Percentage of other [0.298, 0.796, 0.852]
 
 BERT-large
-Percentage of numerals [0.023, 0.053, 0.053]
-Percentage of number words [0.713, 0.636, 0.618]
-Percentage of other [0.264, 0.311, 0.329]
+Percentage of numerals [0.023, 0.071, 0.114]
+Percentage of number words [0.713, 0.771, 0.778]
+Percentage of other [0.264, 0.816, 0.866]
 
 RoBERTa-base
-Percentage of numerals [0.057, 0.082, 0.08]
-Percentage of number words [0.63, 0.56, 0.537]
-Percentage of other [0.313, 0.358, 0.383]
+Percentage of numerals [0.057, 0.114, 0.165]
+Percentage of number words [0.63, 0.667, 0.665]
+Percentage of other [0.313, 0.728, 0.782]
 
 RoBERTa-large
-Percentage of numerals [0.041, 0.063, 0.079]
-Percentage of number words [0.693, 0.611, 0.602]
-Percentage of other [0.266, 0.326, 0.319]
+Percentage of numerals [0.041, 0.094, 0.157]
+Percentage of number words [0.693, 0.727, 0.704]
+Percentage of other [0.266, 0.793, 0.833]

@@ -31,14 +31,26 @@ with open(filepath) as f:
             truth = "zero"  # always use zero
         results = [(item["word"], item["score"]) for item in data["result_list"]]
         results = sorted(results, key=lambda x: x[1], reverse=True)
+        results = [i[0] for i in results]
         total += 1
-        for i, res in enumerate(results):
-          if res in NUMERALS:
-            numeral[i] += 1
-          elif res in WORDS:
-            words[i] += 1
-          else:
-            other[i] += 1
+        if results[0] in NUMERALS:
+          numeral[0] += 1
+        elif results[0] in WORDS:
+          words[0] += 1
+        else:
+          other[0] += 1
+        if results[0] in NUMERALS or results[1] in NUMERALS:
+          numeral[1] += 1
+        elif results[0] in WORDS or results[1] in WORDS:
+          words[1] += 1
+        if (results[0] not in NUMERALS and results[0] in WORDS) or (results[1] not in NUMERALS and results[1] in WORDS):
+          other[1] += 1
+        if results[0] in NUMERALS or results[1] in NUMERALS or results[2] in NUMERALS:
+          numeral[2] += 1
+        elif results[0] in WORDS or results[1] in WORDS or results[2] in WORDS:
+          words[2] += 1
+        if (results[0] not in NUMERALS and results[0] in WORDS) or (results[1] not in NUMERALS and results[1] in WORDS) or (results[2] not in NUMERALS and results[2] in WORDS):
+          other[2] += 1
 
 print("Percentage of numerals", [n/total for n in numeral])
 print("Percentage of number words", [n/total for n in words])
