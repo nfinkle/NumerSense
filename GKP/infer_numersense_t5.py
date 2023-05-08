@@ -125,7 +125,7 @@ def main():
 
         item['output'] = {
             'probe': query,
-            'result_list': [{'word': _[1]} for _ in sorted(zip(probs.tolist(), NUMERSENSE_ANSWERS), reverse=True)],
+            'result_list': [{'word': _[1], 'score: _[0]} for _ in sorted(zip(probs.tolist(), NUMERSENSE_ANSWERS), reverse=True)],
         }
 
         if 'ok' in item:
