@@ -124,7 +124,9 @@ for m in big_model_names:
 model_names = model_names[:-1]
 # print(model_names) 
 plt.xticks(range(15), model_names, rotation=0, fontsize=7)
-plt.yticks([i for i in range(0,110, 10)], fontsize=14)
+plt.yticks([i for i in range(0,110, 10)], fontsize=7)
+plt.xlabel("Model", fontsize=14)
+plt.ylabel("% Accuracy", fontsize=14)
 # show the plot
 plt.legend(loc='lower center')
 plt.title("Model Predictions by Evaluation Method", fontsize=20)
