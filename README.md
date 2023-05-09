@@ -1,4 +1,12 @@
-# NumerSense: Probing Numerical Commonsense Knowledge of BERTs
+# Investigating Pre-trained Models’ Numerical Reasoning with NumerSense
+
+Ruben Ascoli, Nathan Finkle, and Sophie Goldman
+
+This repository contains our work reproducing the NumerSense paper (Lin et al., 2020). We add additional code in the .ipynb notebooks located in the main directory. Our inference results and evaluated results are located in test_results and evaluated_test_results. GKP contains code modified from https://github.com/liujch1998/GKP.
+
+The original NumerSense readme is found below:
+
+## NumerSense: Probing Numerical Commonsense Knowledge of BERTs
 
 
 Project website: https://inklab.usc.edu/NumerSense/
