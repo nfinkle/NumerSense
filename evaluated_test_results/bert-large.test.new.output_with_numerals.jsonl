@@ -4,12 +4,12 @@ num_probes: 1000
 top1-acc: 0.483
 top2-acc: 0.696
 top3-acc: 0.824
-positive corrections top1: 0.022
-positive corrections top2: 0.029
-positive corrections top3: 0.026
-negative corrections top1: 0.004
-negative corrections top2: 0.011
-negative corrections top3: 0.004
+positive corrections top1: 0.013
+positive corrections top2: 0.009
+positive corrections top3: 0.01
+negative corrections top1: 0.007
+negative corrections top2: 0.017
+negative corrections top3: 0.009
 Number word count top1: 0.949
 Number word count top2: 0.88
 Number word count top3: 0.816

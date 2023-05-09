@@ -8,7 +8,8 @@ if use_numerals:
     print("Using numerals")
 
 NUMERALS = [str(i) for i in range(11)]
-
+NUMERIC_WORDS = ["one", "two", "three", "four", "five",
+                 "six", "seven", "eight", "nine", "ten", "no", "zero"]
 truth_dict = {}
 with open(truth_file) as f:
     for line in f.read().splitlines():
@@ -72,7 +73,7 @@ with open(filepath) as f:
             number_word_count_top3 += 1
 
 
-
+        sorted_results = list(filter(lambda x,a=NUMERIC_WORDS: x in a, sorted_results))
         non_numerals_sorted_results = []
         if use_numerals:
             non_numerals_sorted_results = sorted_results
@@ -126,9 +127,21 @@ with open(filepath) as f:
         if truth in sorted_results[:2]:  # hit@2
             correct_top2_cnt += 1
             if non_numerals_sorted_results and truth not in non_numerals_sorted_results[:2]:
+                # print("\nPOSITIVE CORRECTION")
+                # print(data["probe"], truth)
+                # print(copy_results)
+                # print(non_numerals_sorted_results)
+                # print(results)
+                # print(sorted_results)
                 pos_correction_top2 += 1
         elif non_numerals_sorted_results and truth in non_numerals_sorted_results[:2]: # negative correction
             neg_correction_top2 += 1
+            # print("\nNEGATIVE CORRECTION")
+            # print(data["probe"], truth)
+            # print(copy_results)
+            # print(non_numerals_sorted_results)
+            # print(results)
+            # print(sorted_results)
         if truth in sorted_results[:3]:  # hit@3
             correct_top3_cnt += 1
             if non_numerals_sorted_results and truth not in non_numerals_sorted_results[:3]:

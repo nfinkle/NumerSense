@@ -4,9 +4,9 @@ num_probes: 1000
 top1-acc: 0.371
 top2-acc: 0.605
 top3-acc: 0.735
-positive corrections top1: 0.371
-positive corrections top2: 0.605
-positive corrections top3: 0.735
+positive corrections top1: 0.0
+positive corrections top2: 0.0
+positive corrections top3: 0.0
 negative corrections top1: 0.0
 negative corrections top2: 0.0
 negative corrections top3: 0.0
