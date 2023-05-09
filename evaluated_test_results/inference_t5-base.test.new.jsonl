@@ -1,0 +1,5 @@
+test_results/inference_t5-base.test.new.jsonl
+num_probes: 1000
+top1-acc: 0.434
+top2-acc: 0.619
+top3-acc: 0.748

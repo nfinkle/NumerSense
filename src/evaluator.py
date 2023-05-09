@@ -78,7 +78,9 @@ with open(filepath) as f:
             non_numerals_sorted_results = sorted_results
             for i, item in enumerate(data["result_list"]):
                 d = item["word"]
-                if d == "no" or d == "0":
+                if d == "no":
+                    make_replacement_results(results, "no", "zero")
+                elif d == "0":
                     make_replacement_results(results, "0", "zero")
                 elif d == "1":
                     make_replacement_results(results, "1", "one")
@@ -102,7 +104,7 @@ with open(filepath) as f:
                     make_replacement_results(results, "10", "ten")
                 
             sorted_results = sorted(list(results.keys()), key=lambda x, a=results: a[x], reverse=True)
-        
+
         if truth == sorted_results[0]:  # hit@1
             correct_cnt += 1
             if non_numerals_sorted_results and truth != non_numerals_sorted_results[0]: # positive correction
