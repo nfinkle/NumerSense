@@ -2,7 +2,7 @@
 
 Ruben Ascoli, Nathan Finkle, and Sophie Goldman
 
-This repository contains our work reproducing the NumerSense paper (Lin et al., 2020). We add additional code in the .ipynb notebooks located in the main directory. Our inference results and evaluated results are located in test_results and evaluated_test_results. GKP contains code modified from https://github.com/liujch1998/GKP.
+This repository contains our work reproducing the NumerSense paper (Lin et al., 2020) and completing new evaluations. We add additional code in the .ipynb notebooks located in the main directory and via scripts located in src. Our inference results and evaluated results are located in test_results and evaluated_test_results. GKP contains code modified from https://github.com/liujch1998/GKP. Finally, data contains the original NumerSense data and our modified test set.
 
 The original NumerSense readme is found below:
 
