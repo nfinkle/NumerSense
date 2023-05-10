@@ -105,10 +105,19 @@ h2 = h2[:-1]
 h3 = h3[:-1]
 
 plt.bar(range(15), h3, label='Hit@3', color=mcolors.CSS4_COLORS['plum'])
+for i, v in enumerate(h3):
+   if v > 0:
+    plt.text(i, v + 1, str(round(v, 2)), ha='center', fontsize=6)
 plt.bar(range(15), h2, label='Hit@2',
         color=mcolors.CSS4_COLORS['mediumorchid'])
 plt.bar(range(15), h1, label='Hit@1', color=mcolors.CSS4_COLORS['darkviolet'])
-
+for i, v in enumerate(h2):
+   if v > 0:
+    plt.text(i, v + 1, str(round(v, 2)), ha='center', fontsize=6)
+  
+for i, v in enumerate(h1):
+   if v > 0:
+    plt.text(i, v + 1, str(round(v, 2)), ha='center', fontsize=6)
 plt.axhline(y=88.3, linestyle='--', color='green', label="Human Closed Book")
 
 
